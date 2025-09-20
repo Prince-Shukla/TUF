@@ -34,6 +34,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
+    
 
     cout << "Original array: ";
     printArray(arr, n);
