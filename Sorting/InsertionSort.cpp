@@ -1,49 +1,80 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void insertionSort(int arr[], int n) {
-    for (int i = 1; i < n; i++) {
-        int key = arr[i];   // element to insert
-        int j = i - 1;
+// insertion sort is to select the minimum and place it to the last of the sorted portion of the array
+// and keep repeating this untill the whole array is sorted
+// TC is n square
 
-        // shift elements greater than key to one position ahead
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-
-        // insert key at the right position
-        arr[j + 1] = key;
+int *takeinput(int n)
+{
+    int *arr = new int[n];
+    for (int i = 0; i < n; i++)
+    {
+        int element;
+        cin >> element;
+        arr[i] = element;
     }
+    return arr;
 }
 
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
+void swap(int &a, int &b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void printArray(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
         cout << arr[i] << " ";
     }
     cout << endl;
 }
 
-int main() {
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
-
-    int* arr = new int[n];
-    cout << "Enter elements: ";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+void InsertionSort(int arr[], int n)
+{
+    int i = 1;
+    while (i < n)
+    {
+        int j = i - 1;
+        int key = arr[i];
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+        i++;
     }
-    
+}
 
-    cout << "Original array: ";
+void InsertionSort1(int arr[], int n)
+{
+    for (int i=1;i<n;i++)
+    {
+        int j=i-1;
+        int key = arr[i];
+        while (j>=0 && key < arr[j])
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }
+}
+int main()
+{
+    cout << "Enter the no of elements:";
+    int n;
+    cin >> n;
+    int *arr = takeinput(n);
+    cout << "the array is :" << endl;
     printArray(arr, n);
-
-    insertionSort(arr, n);
-
-    cout << "Sorted array: ";
+    cout << "Array after selection sort:" << endl;
+    InsertionSort1(arr, n);
     printArray(arr, n);
-
-    delete[] arr;  // free memory
     return 0;
 }
