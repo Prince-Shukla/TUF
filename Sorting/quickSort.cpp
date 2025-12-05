@@ -65,7 +65,7 @@ int main()
     }
     cout <<"The array input"; 
     printArray(A, n);
-    cout <<"After sorting ";
+    cout <<"The array After sorting ";
     quickSort(A,0,n);
     for (int i = 0; i < n; i++)
     {
